@@ -2,6 +2,7 @@ module Main where
 
 import Addition
 import Test.Hspec
+import Test.QuickCheck
 
 main :: IO ()
 main = hspec $ do
@@ -16,3 +17,5 @@ main = hspec $ do
       (mulrec 3 1) `shouldBe` 3
     it "1 * 3 = 3" $ do
       (mulrec 1 3) `shouldBe` 3
+    it "x + 1 is always greater than x" $ do
+      property $ \x -> x + 1 > (x :: Int)
